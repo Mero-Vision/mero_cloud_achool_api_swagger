@@ -1,0 +1,28 @@
+{
+    "info": {
+        "title": "Mero Cloud School",
+        "version": "1.0",
+        "description": "Mero Cloud School API documentation",
+        "termsOfService": "#",
+        "license": {
+            "name": "MIT",
+            "url": "https://es.wikipedia.org/wiki/Licencia_MIT"
+        },
+        "contact": {
+            "name": "Mero Vision",
+            "url": "https://merovision.com",
+            "email": "info@merovision.com"
+        },
+        "xLogo": {
+            "url": "https://github.com/joolfe/logoBanner.png",
+            "backgroundColor": "#FFFFFF",
+            "altText": "logo"
+        }
+    },
+    "servers": [
+        {
+            "url": "https://api.merovision.com",
+            "description": "server"
+        }
+    ]
+}
