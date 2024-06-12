@@ -53,6 +53,142 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "Institution",
+					"item": [
+						{
+							"name": "create institution",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "institute_name",
+											"value": "PCPS College",
+											"type": "text"
+										},
+										{
+											"key": "institute_display_name",
+											"value": "PCPS",
+											"type": "text"
+										},
+										{
+											"key": "primary_phone_no",
+											"value": "9825915122",
+											"type": "text"
+										},
+										{
+											"key": "primary_email",
+											"value": "pcps@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "address",
+											"value": "Lalitpur",
+											"type": "text"
+										},
+										{
+											"key": "institute_esd_date",
+											"value": "2001-04-20",
+											"type": "text"
+										},
+										{
+											"key": "pan_no",
+											"value": "34535636546",
+											"type": "text"
+										},
+										{
+											"key": "website",
+											"value": "pcps.com",
+											"type": "text"
+										},
+										{
+											"key": "institution_logo",
+											"type": "file",
+											"src": "2LXX_agPM/440195865_467032842653939_3630743480865858158_n.png"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/superadmin/institutions",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"superadmin",
+										"institutions"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show all institutions list",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/superadmin/institutions?pagination_limit=5",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"superadmin",
+										"institutions"
+									],
+									"query": [
+										{
+											"key": "pagination_limit",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show single institution",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/superadmin/institutions/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"superadmin",
+										"institutions",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		}

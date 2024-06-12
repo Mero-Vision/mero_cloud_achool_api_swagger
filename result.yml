@@ -21,6 +21,7 @@ servers:
 tags:
   - name: Super Admin
   - name: Super Admin > Auth
+  - name: Super Admin > Institution
 paths:
   /api/superadmin/login:
     post:
@@ -45,6 +46,91 @@ paths:
           schema:
             type: string
           example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/superadmin/institutions:
+    post:
+      tags:
+        - Super Admin > Institution
+      summary: create institution
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                institute_name:
+                  type: string
+                  example: PCPS College
+                institute_display_name:
+                  type: string
+                  example: PCPS
+                primary_phone_no:
+                  type: integer
+                  example: '9825915122'
+                primary_email:
+                  type: string
+                  example: pcps@gmail.com
+                address:
+                  type: string
+                  example: Lalitpur
+                institute_esd_date:
+                  type: string
+                  example: '2001-04-20'
+                pan_no:
+                  type: integer
+                  example: '34535636546'
+                website:
+                  type: string
+                  example: pcps.com
+                institution_logo:
+                  type: string
+                  format: binary
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Super Admin > Institution
+      summary: show all institutions list
+      parameters:
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '5'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/superadmin/institutions/{id}:
+    get:
+      tags:
+        - Super Admin > Institution
+      summary: show single institution
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
       responses:
         '200':
           description: Successful response
