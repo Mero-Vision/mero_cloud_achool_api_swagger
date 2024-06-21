@@ -18,11 +18,295 @@ info:
 servers:
   - url: https://api.merovision.com
     description: server
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
 tags:
+  - name: Admin
+  - name: Admin > Authentication
+  - name: Admin > Teacher
+  - name: Admin > Master Data
   - name: Super Admin
   - name: Super Admin > Auth
   - name: Super Admin > Institution
 paths:
+  /api/admin/login:
+    post:
+      tags:
+        - Admin > Authentication
+      summary: admin login
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: hanciewanemphago@gmail.com
+                password:
+                  type: string
+                  example: Password
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/teachers:
+    post:
+      tags:
+        - Admin > Teacher
+      summary: create teachers
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Nitesh Hamal
+                email:
+                  type: string
+                  example: nitesh0hamal@gmail.com
+                mobile_no:
+                  type: integer
+                  example: '983544644'
+                gender:
+                  type: string
+                  example: Male
+                date_of_birth:
+                  type: string
+                  example: '2003-01-20'
+                designation:
+                  type: string
+                  example: Teacher
+                joining_date:
+                  type: string
+                  example: '2023-03-23'
+                marital_status:
+                  type: string
+                  example: Single
+                job_type:
+                  type: string
+                  example: Full-Time
+                working_hour:
+                  type: string
+                  example: 8 Hours
+                temporary_address:
+                  type: string
+                  example: KTM
+                permanent_address:
+                  type: string
+                  example: Jhapa
+                base_salary:
+                  type: integer
+                  example: '40000'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Fri, 21 Jun 2024 02:32:46 GMT
+            Server:
+              schema:
+                type: string
+                example: Apache
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                example: '58'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Vary:
+              schema:
+                type: string
+                example: Authorization
+            Upgrade:
+              schema:
+                type: string
+                example: h2,h2c
+            Connection:
+              schema:
+                type: string
+                example: Upgrade, Keep-Alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5, max=100
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  id: 5
+                  name: Nitesh Hamal
+                  email: nitesh0hamal@gmail.com
+                  created_at: '2024-06-21 02:32:46'
+                  updated_at: '2024-06-21 02:32:46'
+                  mobile_no: '983544644'
+                  roles:
+                    - teacher
+                  teacher_details:
+                    designation: Teacher
+                    joining_date: '2023-03-23'
+                    marital_status: Single
+                    job_type: Full-Time
+                    working_hour: 8 Hours
+                    temporary_address: KTM
+                    permanent_address: Jhapa
+                    base_salary: '40000.00'
+                    created_user_id: 1
+                message: Teacher Created Successfully!
+    get:
+      tags:
+        - Admin > Teacher
+      summary: show all teachers
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '8'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/master-data/genders:
+    get:
+      tags:
+        - Admin > Master Data
+      summary: show gender data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/master-data/designations:
+    get:
+      tags:
+        - Admin > Master Data
+      summary: designation data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/master-data/marital-status:
+    get:
+      tags:
+        - Admin > Master Data
+      summary: marital status data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/master-data/job-types:
+    get:
+      tags:
+        - Admin > Master Data
+      summary: job type data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/master-data/religions:
+    get:
+      tags:
+        - Admin > Master Data
+      summary: religion data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/superadmin/login:
     post:
       tags:
@@ -89,6 +373,8 @@ paths:
                 institution_logo:
                   type: string
                   format: binary
+      security:
+        - bearerAuth: []
       parameters:
         - name: Accept
           in: header
@@ -104,6 +390,8 @@ paths:
       tags:
         - Super Admin > Institution
       summary: show all institutions list
+      security:
+        - bearerAuth: []
       parameters:
         - name: pagination_limit
           in: query
@@ -131,6 +419,88 @@ paths:
           schema:
             type: string
           required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/superadmin/institutions/1:
+    post:
+      tags:
+        - Super Admin > Institution
+      summary: update institution
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                institute_name:
+                  type: string
+                  example: PCPS College2
+                institute_display_name:
+                  type: string
+                  example: PCPS6
+                primary_phone_no:
+                  type: integer
+                  example: '9825915122'
+                primary_email:
+                  type: string
+                  example: pcps@gmail.com
+                address:
+                  type: string
+                  example: Lalitpur
+                institute_esd_date:
+                  type: string
+                  example: '2001-04-20'
+                pan_no:
+                  type: integer
+                  example: '34535636546'
+                website:
+                  type: string
+                  example: https://student.patancollege.edu.np/
+                _method:
+                  type: string
+                  example: PUT
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/superadmin/institutions/owner/invitation:
+    post:
+      tags:
+        - Super Admin > Institution
+      summary: owner invitation
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                institution_id:
+                  type: integer
+                  example: '1'
+                name:
+                  type: string
+                  example: Hancie Phago
+                email:
+                  type: string
+                  example: hanciewanemphago@gmail.com
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
       responses:
         '200':
           description: Successful response
